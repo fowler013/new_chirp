@@ -1,4 +1,4 @@
-import { executeQuery, generatePlaceholders } from './config/db';
+import { executeQuery, generatePlaceholders } from './config/db-test';
 
 class Table {
     constructor(tableName) {

@@ -6,17 +6,17 @@ class ChirpForm extends Component {
         super(props);
 
         this.state = {
-            user: '',
-            text: ''
+            user_name: '',
+            message: ''
         };
     }
 
-    handleInputChange(user) {
-        this.setState({ user });
+    handleInputChange(user_name) {
+        this.setState({ user_name });
     }
 
-    handleContentChange(text) {
-        this.setState({ text });
+    handleContentChange(message) {
+        this.setState({ message });
     }
 
     render() {
@@ -28,13 +28,13 @@ class ChirpForm extends Component {
                 </label>
                
                 <input
-                    value={this.state.user}
+                    value={this.state.user_name}
                     onChange={(event) => { this.handleInputChange(event.target.value) }}
                     className="form-control w-70 m-2 d-inline formTitle cardFont"
-                    placeholder="User"
+                    placeholder="Username"
                 />
                 <div className="form-group">
-                    <textarea value={this.state.text}
+                    <textarea value={this.state.message}
                  onChange={(event) => { this.handleContentChange(event.target.value) }}
                  className="form-control w-70 m-2 d-inline bg-light formContent cardFont"
                  placeholder="Chirp about it"></textarea>

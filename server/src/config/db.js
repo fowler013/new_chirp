@@ -1,73 +1,75 @@
-import mysql from 'mysql'; 
-const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: 'innovatebham',
-    database: 'Chirpr_full'
-});
+// import mysql from 'mysql'; 
 
-async function executeQuery(sql, args = []) {
-    let connection = await getConnection();
-    return sendQueryToDB(connection, sql, args);
-}
+// let pool = mysql.createPool({
+//     connectionLimit: 10, 
+//     host: 'localhost',
+//     user: 'root',
+//     password: 'innovatebham',
+//     database: 'chirpr_db'
+// });
 
-function callProcedure(procedureName, args = []) {
-    let placeholders = generatePlaceholders(args);
-    let callString = `CALL ${procedureName}(${placeholders});`; // CALL GetChirps();, or CALL InsertChirp(?,?,?);
-    return executeQuery(callString, args);
-}
+// async function executeQuery(sql, args = []) {
+//     let connection = await getConnection();
+//     return sendQueryToDB(connection, sql, args);
+// }
 
-async function rows(procedureName, args = []) {
-    let resultsets = await callProcedure(procedureName, args);
-    return resultsets[0];
-}
+// function callProcedure(procedureName, args = []) {
+//     let placeholders = generatePlaceholders(args);
+//     let callString = `CALL ${procedureName}(${placeholders});`; // CALL GetChirps();, or CALL InsertChirp(?,?,?);
+//     return executeQuery(callString, args);
+// }
 
-async function row(procedureName, args = []) {
-    let resultsets = await callProcedure(procedureName, args);
-    return resultsets[0][0];
-}
+// async function rows(procedureName, args = []) {
+//     let resultsets = await callProcedure(procedureName, args);
+//     return resultsets[0];
+// }
 
-async function empty(procedureName, args = []) {
-    await callProcedure(procedureName, args);
-}
+// async function row(procedureName, args = []) {
+//     let resultsets = await callProcedure(procedureName, args);
+//     return resultsets[0][0];
+// }
 
-function generatePlaceholders(args = []) {
-    let placeholders = '';
-    if (args.length > 0) {
-        for (let i = 0; i < args.length; i++) {
-            if (i === args.length - 1) { // if we are on the last argument in the array
-                placeholders += '?';
-            } else {
-                placeholders += '?,';
-            }
-        }
-    }
-    return placeholders;
-}
+// async function empty(procedureName, args = []) {
+//     await callProcedure(procedureName, args);
+// }
 
-function getConnection() {
-    return new Promise((resolve, reject) => {
-        pool.getConnection((err, connection) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(connection);
-            }
-        });
-    });
-}
+// function generatePlaceholders(args = []) {
+//     let placeholders = '';
+//     if (args.length > 0) {
+//         for (let i = 0; i < args.length; i++) {
+//             if (i === args.length - 1) { // if we are on the last argument in the array
+//                 placeholders += '?';
+//             } else {
+//                 placeholders += '?,';
+//             }
+//         }
+//     }
+//     return placeholders;
+// }
 
-function sendQueryToDB(connection, sql, args = []) {
-    return new Promise((resolve, reject) => {
-        connection.query(sql, args, (err, result) => {
-            connection.release();
-            if (err) {
-                reject(err);
-            } else {
-                resolve(result);
-            }
-        });
-    });
-}
+// function getConnection() {
+//     return new Promise((resolve, reject) => {
+//         pool.getConnection((err, connection) => {
+//             if (err) {
+//                 reject(err);
+//             } else {
+//                 resolve(connection);
+//             }
+//         });
+//     });
+// }
 
-export { row, rows, empty, executeQuery, generatePlaceholders };
+// function sendQueryToDB(connection, sql, args = []) {
+//     return new Promise((resolve, reject) => {
+//         connection.query(sql, args, (err, result) => {
+//             connection.release();
+//             if (err) {
+//                 reject(err);
+//             } else {
+//                 resolve(result);
+//             }
+//         });
+//     });
+// }
+
+// export { row, rows, empty, executeQuery, generatePlaceholders };

@@ -14,4 +14,5 @@ class List extends Component {
            </Fragment> 
         );
     }
-} export default List
+} 
+export default List;

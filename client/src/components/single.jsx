@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import BlogForm from './blogForm';
+import ChirpForm from './ChirpForm';
 
 //this is where I would update 1 chirp//
 
@@ -9,7 +9,7 @@ class Single extends React.Component {
         super(props);
 
         this.state = {
-            blog: {}
+            chirp: {}
         };
     }
 
@@ -22,7 +22,7 @@ class Single extends React.Component {
             .then((response) => {
                 return response.json();
             }).then((chirp) => {
-                console.log(blog);
+                console.log(chirp);
 
                 this.setState({
                     chirp: chirp
@@ -41,7 +41,7 @@ class Single extends React.Component {
             body: JSON.stringify(post)
         }).then(() => {
             this.setState({
-                blog: post
+                chirp: post
             });
         }).catch((err) => {
             console.log(err);
@@ -71,17 +71,17 @@ class Single extends React.Component {
                    
                         <label
                     htmlFor="title-input"
-                    className="d-block m-2">{this.props.action} User:
+                    className="d-block m-2">{this.props.action} Username:
                 </label>
                         <h3 className="card-text">
-                            {post.user}
+                            {post.user_name}
                         </h3>
                         <label
                     htmlFor="title-input"
-                    className="d-block m-2">{this.props.action} Text:
+                    className="d-block m-2">{this.props.action} Message:
                 </label>
                         <h5 className="card-text">
-                            {post.text}
+                            {post.message}
                         </h5>
                     </div>
                 </div>
@@ -97,7 +97,7 @@ class Single extends React.Component {
                     </div >
                 </div>
                 <div className="container" style = {{ width:" 550px"}} >
-                    <BlogForm action="Update" postChirp={(post) => { this.updateChirp (post); }} />
+                    <ChirpForm action="Update" postChirp={(post) => { this.updateChirp (post); }} />
                 </div>
                 
             </div>

@@ -1,5 +1,5 @@
 {
-  "name": "in-class-db-api",
+  "name": "in-class-db-api-chirp_db",
   "version": "1.0.0",
   "description": "",
   "main": "server/lib/index.js",

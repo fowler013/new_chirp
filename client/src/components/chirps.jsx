@@ -34,25 +34,26 @@ class chirps extends Component {
 
     //this is were the chirps are added//
     addChirp(post) {
-        console.log(post)
-        fetch("/api/chirps", {
+        console.log(post);
+        fetch("/api/chirps/", {
             method: 'POST',
             header: {
-                'Content-Type': 'application/json',
-              },body: JSON.stringify(post)
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(post)
         }).then(() => {
             this.getChirps();
         }).catch((err) => {
             console.log(err)
-        })
+        });
     }
 
 
     render() {
         return (
             <div className="container">
-                <ChirpForm action = "Create" postChirp={(post) => { this.addChirp(post); }} />
-                {<List chirps={this.state.chirps} />}
+                <ChirpForm action="Create" postChirp={(post) => { this.addChirp(post); }} />
+                <List chirps={this.state.chirps} />
             </div>
         );
     }

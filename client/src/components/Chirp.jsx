@@ -10,12 +10,12 @@ const Chirp = (props) => {
             <h2 className="card-text ">
                     
                 </h2>
-                User:
+                Username:
                 <h3 className="card-text">
-                    {props.post.user}
-                </h3>Text:
+                    {props.post.user_name}
+                </h3>Message:
                 <h5 className="card-text">
-                    {props.post.text}
+                    {props.post.message}
                 </h5>
 
 
